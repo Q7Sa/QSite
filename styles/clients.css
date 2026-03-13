@@ -1,0 +1,57 @@
+/* Clients Section Styles */
+.section-clients {
+    padding-block: 4rem;
+    border-block-end: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.client-marquee {
+    display: flex;
+    gap: 2rem;
+    animation: scroll-left 20s linear infinite;
+    width: max-content;
+}
+
+.client-logo-box {
+    width: 200px;
+    height: 80px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.client-logo-box::after {
+    content: 'LOGO';
+    color: var(--border-color);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* RTL Support */
+[dir="rtl"] .client-marquee {
+    animation: scroll-right 20s linear infinite;
+}
+
+@keyframes scroll-right {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(50%);
+    }
+}

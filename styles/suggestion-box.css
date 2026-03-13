@@ -1,0 +1,205 @@
+/* Suggestion Action Area */
+.section-suggestions {
+    padding-block: 4rem 6rem;
+}
+
+.pulse-glow {
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 10px var(--accent);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--accent);
+    }
+
+    100% {
+        box-shadow: 0 0 10px var(--accent);
+    }
+}
+
+/* Modern Suggestion Modal */
+.modern-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    inset: 0;
+    background-color: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(15px);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.modern-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content.terminal-box {
+    width: 90%;
+    max-width: 600px;
+    background-color: rgba(20, 20, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    position: relative;
+    transform: translateY(20px);
+    transition: transform var(--transition-normal);
+    padding: 0;
+    /* Header handles its own padding */
+}
+
+.modern-modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.terminal-header {
+    background-color: rgba(10, 10, 15, 0.9);
+    padding: 0.75rem 1.5rem;
+    border-block-end: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: monospace;
+    color: var(--text-secondary);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.modal-close:hover {
+    color: var(--accent);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.arabic-title {
+    font-family: 'Tajawal', var(--font-heading);
+    text-align: center;
+    margin-block-end: 2rem;
+    color: var(--text-primary);
+    font-size: 1.8rem;
+}
+
+/* Wizard Logic */
+.wizard-step {
+    display: none;
+    animation: slideInRTL 0.3s ease-out;
+}
+
+.wizard-step.active {
+    display: block;
+}
+
+@keyframes slideInRTL {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.step-title {
+    font-family: 'Tajawal', var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-block-end: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    background-color: rgba(5, 5, 5, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    padding: 1.2rem;
+    font-family: 'Tajawal', var(--font-body);
+    font-size: 1.1rem;
+    transition: all var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+.step-actions {
+    margin-block-start: 2rem;
+}
+
+.btn-next,
+.btn-prev,
+.btn-close-final {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+    font-family: 'Tajawal', var(--font-heading);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-next:hover,
+.btn-prev:hover,
+.btn-close-final:hover {
+    border-color: var(--accent);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-submit {
+    background-color: var(--accent);
+    color: #000;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-family: 'Tajawal', var(--font-heading);
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.success-state {
+    text-align: center;
+    padding-block: 2rem;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: var(--accent);
+    margin-block-end: 1.5rem;
+    text-shadow: 0 0 20px var(--accent);
+}
+
+.success-state h3 {
+    font-family: 'Tajawal', var(--font-heading);
+    font-size: 1.5rem;
+    margin-block-end: 0.5rem;
+}
+
+.success-state p {
+    color: var(--text-secondary);
+    margin-block-end: 2rem;
+}
+
+.success-state .btn-close-final {
+    margin-inline: auto;
+}

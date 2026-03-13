@@ -1,0 +1,68 @@
+:root {
+  /* Color System */
+  --bg-primary: #121212;
+  /* Very dark gray/near black */
+  --bg-secondary: #1e1e1e;
+  /* Slightly lighter dark gray */
+  --text-primary: #ffffff;
+  /* Pure white */
+  --text-secondary: #a0a0a0;
+  /* Light gray */
+  --accent: #ffffff;
+  /* White */
+
+  /* Additional Theme Colors */
+  --border-color: #333333;
+  --surface-hover: #2a2a2a;
+
+  /* Typography */
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', 'Montserrat', sans-serif;
+  /* Blocky/geometric styling if supported, Google Fonts imported in base */
+
+  /* Layout & Sizing */
+  --max-width: 1200px;
+  --header-height: 80px;
+
+  /* Snappy Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+}
+
+[dir="rtl"] {
+  /* RTL specific overrides if needed, though logical properties should handle most */
+  --font-body: 'Tajawal', 'Inter', system-ui, sans-serif;
+  /* Good Arabic font */
+  --font-heading: 'Tajawal', 'Outfit', sans-serif;
+}
+
+/* --- Themes --- */
+
+/* Kick Theme */
+[data-theme="kick"] {
+  --accent: #53fc18;
+  --bg-primary: #0d0d0d;
+}
+
+/* Red Theme */
+[data-theme="red"] {
+  --accent: #ff0033;
+  --bg-primary: #0d0d0d;
+}
+
+/* Twitch Theme */
+[data-theme="twitch"] {
+  --accent: #d2e4f7;
+  --bg-primary: #131629;
+}
+
+/* Black & White Theme (Light Mode) */
+[data-theme="bw"] {
+  --accent: #888888;
+  --bg-primary: #fdfdfd;
+  --bg-secondary: #f0f0f0;
+  --text-primary: #121212;
+  --text-secondary: #555555;
+  --border-color: #dddddd;
+  --glass-bg: rgba(250, 250, 250, 0.4);
+}

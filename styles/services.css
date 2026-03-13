@@ -1,0 +1,188 @@
+/* Services Section Styles */
+.section-services {
+    padding-block: 6rem;
+    border-block-end: 1px solid var(--border-color);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    align-items: start;
+}
+
+.service-card {
+    background-color: rgba(20, 20, 25, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform var(--transition-normal);
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--accent);
+}
+
+.service-card:hover::before {
+    transform: scaleY(1);
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-block-end: 1rem;
+    color: var(--accent);
+    transition: color var(--transition-normal);
+}
+
+.service-brief {
+    color: var(--text-secondary);
+    margin-block-end: 2rem;
+}
+
+.service-details {
+    display: none;
+    /* Initially hidden, toggled via JS */
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-block-start: 2rem;
+    padding-block-start: 2rem;
+    border-block-start: 1px solid var(--border-color);
+}
+
+.service-card.expanded .service-details {
+    display: flex;
+}
+
+.tier {
+    background-color: var(--bg-primary);
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.tier h4 {
+    font-size: 1.25rem;
+    margin-block-end: 0.5rem;
+    color: var(--accent);
+}
+
+.tier p {
+    color: var(--text-secondary);
+    margin-block-end: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Gallery Grid within Services */
+.service-gallery {
+    margin-block-start: 1rem;
+    border-block-start: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-block-start: 1.5rem;
+}
+
+.service-gallery h5 {
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    margin-block-end: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+}
+
+.gallery-item {
+    aspect-ratio: 16 / 9;
+    background-color: var(--bg-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+}
+
+.gallery-item.placeholder-img {
+    background: repeating-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(255, 255, 255, 0.02) 10px,
+            rgba(255, 255, 255, 0.05) 10px,
+            rgba(255, 255, 255, 0.05) 20px);
+}
+
+.gallery-item.placeholder-img span {
+    font-family: monospace;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.gallery-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.price {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.btn-action {
+    display: inline-block;
+    background-color: var(--accent);
+    color: var(--bg-primary);
+    padding: 1rem 2rem;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-block-start: 1rem;
+    transition: all var(--transition-normal);
+    border: 1px solid transparent;
+}
+
+.btn-action:hover {
+    background-color: var(--bg-primary);
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent);
+}
+
+/* RTL Support via Logical Properties mostly handles it, but just in case */
+[dir="rtl"] .service-card {
+    text-align: right;
+}

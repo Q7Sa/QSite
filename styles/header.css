@@ -1,0 +1,124 @@
+/* Header Styles */
+.site-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    height: var(--header-height);
+    background-color: rgba(5, 5, 8, 0.4);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: none;
+    border-block-end: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding-block: 1rem;
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), background-color var(--transition-normal);
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.site-header.hidden {
+    transform: translateY(-100%);
+}
+
+.site-logo {
+    height: 40px;
+    /* Adjust based on exact logo dimensions */
+    width: auto;
+    display: block;
+    transition: transform var(--transition-normal), filter var(--transition-normal);
+}
+
+.site-logo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px var(--accent));
+}
+
+.site-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-lang {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: var(--font-body);
+}
+
+.btn-lang:hover {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    border-color: var(--text-primary);
+}
+
+/* Theme Selector */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.theme-selector {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.theme-btn {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.theme-btn:hover,
+.theme-btn.active {
+    transform: scale(1.3);
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+/* RTL Support */
+[dir="rtl"] .site-nav {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .nav-links {
+    flex-direction: row-reverse;
+}

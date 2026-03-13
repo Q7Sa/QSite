@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800;900&family=Tajawal:wght@500;700;800&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    background-color: var(--bg-primary);
+    /* Linked to active theme */
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+    min-height: 100vh;
+}
+
+#bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+    /* Let clicks pass through to the content */
+}
+
+#bg-glass-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--glass-bg, rgba(5, 5, 8, 0.4));
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: -1;
+    pointer-events: none;
+    transition: background-color var(--transition-normal);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--text-secondary);
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Sharp Voxel/Pixel Aesthetic Defaults */
+button,
+input,
+textarea,
+.card {
+    border-radius: 0px !important;
+    /* Forces sharp corners */
+}
+
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: 2rem;
+}
+
+/* Base utility classes for logical layouts */
+.flex-start {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Site Footer & Social Icons */
+.site-footer {
+    padding-block: 4rem;
+    background-color: rgba(5, 5, 5, 0.8);
+    border-block-start: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+    margin-block-end: 2rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(20, 20, 25, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    transition: all var(--transition-normal);
+}
+
+/* Brand Colors for Hackery Glow Effect (Icons) */
+.social-icon[data-platform="discord"]:hover {
+    border-color: #5865F2;
+    color: #5865F2;
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
+    transform: translateY(-5px);
+}
+
+.social-icon[data-platform="x"]:hover {
+    border-color: #ffffff;
+    color: #000000;
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    transform: translateY(-5px);
+}
+
+.social-icon[data-platform="youtube"]:hover {
+    border-color: #FF0000;
+    color: #FF0000;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    transform: translateY(-5px);
+}
+
+.social-icon[data-platform="instagram"]:hover {
+    border-color: #E1306C;
+    color: #E1306C;
+    box-shadow: 0 0 15px rgba(225, 48, 108, 0.6);
+    transform: translateY(-5px);
+}
+
+.social-icon[data-platform="twitch"]:hover {
+    border-color: #9146FF;
+    color: #9146FF;
+    box-shadow: 0 0 15px rgba(145, 70, 255, 0.6);
+    transform: translateY(-5px);
+}
+
+.social-icon[data-platform="kick"]:hover {
+    border-color: #53FC18;
+    color: #53FC18;
+    box-shadow: 0 0 15px rgba(83, 252, 24, 0.6);
+    transform: translateY(-5px);
+}
+
+.footer-copy {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    font-family: var(--font-heading);
+}
+
+/* Lightbox Modal */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 30px var(--accent);
+    animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    color: var(--text-secondary);
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+    z-index: 1001;
+}
+
+.lightbox-close:hover {
+    color: var(--accent);
+}
+
+#lightbox-caption {
+    margin-top: 1.5rem;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}

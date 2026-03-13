@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Q7 | Personal Site & Services Hub</title>
+  <!-- FontAwesome for Social Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Interactive Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+  <div id="bg-glass-overlay"></div>
+
+  <!-- Header -->
+  <header class="site-header hidden" id="main-header">
+    <div class="container flex-between">
+      <div class="logo-container">
+        <a href="#" aria-label="Q7 Home">
+          <img src="/logo.png" alt="Q7" class="site-logo" />
+        </a>
+      </div>
+      <!-- Nav links Centered -->
+      <nav class="site-nav">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#media">Media</a></li>
+        </ul>
+      </nav>
+
+      <!-- Actions Right-aligned -->
+      <div class="header-actions">
+        <div class="theme-selector">
+          <button class="theme-btn" data-set-theme="default" aria-label="Default Theme"
+            style="background-color: #ffffff;"></button>
+          <button class="theme-btn" data-set-theme="bw" aria-label="B&W Theme"
+            style="background-color: #888888;"></button>
+          <button class="theme-btn" data-set-theme="kick" aria-label="Kick Theme"
+            style="background-color: #53fc18;"></button>
+          <button class="theme-btn" data-set-theme="red" aria-label="Red Theme"
+            style="background-color: #ff0033;"></button>
+          <button class="theme-btn" data-set-theme="twitch" aria-label="Twitch Theme"
+            style="background-color: #d2e4f7;"></button>
+        </div>
+        <button id="lang-toggle" class="btn-lang" aria-label="Toggle Language">AR / RTL</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Section 1: Intro & Logo -->
+    <section id="about" class="section-about">
+      <div class="container flex-column-center">
+        <!-- Tasteful, subtle logo -->
+        <img src="/logo.png" alt="Q7" class="subtle-hero-logo" />
+
+        <!-- OS Terminal Window -->
+        <div class="floating-os-window">
+          <div class="os-titlebar">
+            <div class="os-controls">
+              <span class="os-btn close"></span>
+              <span class="os-btn minimize"></span>
+              <span class="os-btn maximize"></span>
+            </div>
+            <div class="os-title">about_me.exe</div>
+          </div>
+          <div class="os-content about-content">
+            <p><span class="accent-text">&gt; q7_system:</span> high-performance setups // custom datapacks // server
+              optimization.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Services -->
+    <section id="services" class="section-services">
+      <div class="container">
+        <div class="services-grid">
+          <!-- Card 1 -->
+          <div class="service-card" data-service="optimization">
+            <h3>Server Optimization</h3>
+            <p class="service-brief">Max performance, zero lag.</p>
+            <div class="service-details">
+              <div class="tier">
+                <h4>Basic</h4>
+                <p>Core config tweaks & plugin cleanup.</p>
+                <span class="price">$XX</span>
+              </div>
+              <div class="tier">
+                <h4>Pro</h4>
+                <p>Advanced profiling & JVM tuning.</p>
+                <span class="price">$XX</span>
+              </div>
+
+              <div class="service-gallery">
+                <h5>Previous Work</h5>
+                <div class="gallery-grid">
+                  <div class="gallery-item placeholder-img"><span>Work 1</span></div>
+                  <div class="gallery-item placeholder-img"><span>Work 2</span></div>
+                  <div class="gallery-item placeholder-img"><span>Work 3</span></div>
+                </div>
+              </div>
+
+              <button class="btn-action btn-open-form" data-form="service_optimization">Request Service</button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="service-card" data-service="datapacks">
+            <h3>Datapack Coding</h3>
+            <p class="service-brief">Custom logic & mechanics.</p>
+            <div class="service-details">
+              <div class="tier">
+                <h4>Custom</h4>
+                <p>Tailored functionality based on requirements.</p>
+                <span class="price">Varies</span>
+              </div>
+
+              <div class="service-gallery">
+                <h5>Previous Work</h5>
+                <div class="gallery-grid">
+                  <div class="gallery-item placeholder-img"><span>Pack 1</span></div>
+                  <div class="gallery-item placeholder-img"><span>Pack 2</span></div>
+                  <div class="gallery-item placeholder-img"><span>Pack 3</span></div>
+                </div>
+              </div>
+
+              <button class="btn-action btn-open-form" data-form="service_datapacks">Request Service</button>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="service-card" data-service="smp">
+            <h3>SMP Servers Set Up</h3>
+            <p class="service-brief">Ready-to-play survival experiences.</p>
+            <div class="service-details">
+              <div class="tier">
+                <h4>Standard</h4>
+                <p>Essential plugins + secure setup.</p>
+                <span class="price">$XX</span>
+              </div>
+              <div class="tier">
+                <h4>Premium</h4>
+                <p>Custom terrain, economy & ranks.</p>
+                <span class="price">$XX</span>
+              </div>
+
+              <div class="service-gallery">
+                <h5>Previous Work</h5>
+                <div class="gallery-grid">
+                  <div class="gallery-item placeholder-img"><span>SMP 1</span></div>
+                  <div class="gallery-item placeholder-img"><span>SMP 2</span></div>
+                  <div class="gallery-item placeholder-img"><span>SMP 3</span></div>
+                </div>
+              </div>
+
+              <button class="btn-action btn-open-form" data-form="service_smp">Request Service</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Who I've Worked With -->
+    <section id="clients" class="section-clients">
+      <div class="container">
+        <div class="client-marquee">
+          <div class="client-logo-box"></div>
+          <div class="client-logo-box"></div>
+          <div class="client-logo-box"></div>
+          <div class="client-logo-box"></div>
+          <div class="client-logo-box"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Media / Instagram Reels -->
+    <section id="media" class="section-media">
+      <div class="container">
+        <div class="media-grid">
+          <!-- 9:16 aspect ratio containers -->
+          <div class="media-item"></div>
+          <div class="media-item"></div>
+          <div class="media-item"></div>
+          <div class="media-item"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Suggestion Action Area (Replaces old static form) -->
+    <section id="suggestions" class="section-suggestions">
+      <div class="container flex-center">
+        <button id="btn-open-suggestion" class="btn-action btn-open-form pulse-glow" data-form="suggestion">
+          <i class="fa-solid fa-terminal"></i> <span data-i18n="sugg_open">تقديم اقتراح</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modern Suggestion Pop-out Modal -->
+  <div id="suggestion-modal" class="modern-modal">
+    <div class="modal-content terminal-box">
+      <div class="terminal-header flex-between">
+        <span>// suggestion_wizard.exe</span>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <h2 class="arabic-title" id="wizard-title">...</h2>
+
+        <form id="wizard-form" class="wizard-form">
+          <!-- Dynamic steps and success state will be injected here by main.js -->
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer with Social Icons -->
+  <footer class="site-footer">
+    <div class="container flex-center">
+      <div class="social-icons">
+        <a href="#" class="social-icon" data-platform="discord" aria-label="Discord"><i
+            class="fa-brands fa-discord"></i></a>
+        <a href="#" class="social-icon" data-platform="x" aria-label="X (Twitter)"><i
+            class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="social-icon" data-platform="youtube" aria-label="YouTube"><i
+            class="fa-brands fa-youtube"></i></a>
+        <a href="#" class="social-icon" data-platform="instagram" aria-label="Instagram"><i
+            class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-icon" data-platform="twitch" aria-label="Twitch"><i
+            class="fa-brands fa-twitch"></i></a>
+        <a href="#" class="social-icon" data-platform="kick" aria-label="Kick"><i
+            class="fa-brands fa-kickstarter-k"></i></a> <!-- Fallback for Kick -->
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>&copy; 2026 Q7. All boundaries broken.</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" alt="Maximized view">
+    <div id="lightbox-caption"></div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>

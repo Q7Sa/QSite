@@ -1,0 +1,46 @@
+/* Media Section Styles */
+.section-media {
+    padding-block: 6rem;
+    border-block-end: 1px solid var(--border-color);
+}
+
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.media-item {
+    background-color: rgba(20, 20, 25, 0.6);
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    aspect-ratio: 9 / 16;
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+.media-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.media-item::before,
+.media-item::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+}
+
+.media-item::before {
+    top: -5px;
+    inset-inline-start: -5px;
+}
+
+.media-item::after {
+    bottom: -5px;
+    inset-inline-end: -5px;
+}

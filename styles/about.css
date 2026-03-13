@@ -1,0 +1,130 @@
+/* Intro Section Styles */
+.section-about {
+    padding-block: 8rem 2rem;
+    /* Adjusted top padding since the hero section is gone */
+    display: flex;
+    justify-content: center;
+}
+
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Subtle Hero Logo */
+.subtle-hero-logo {
+    width: 250px;
+    height: auto;
+    filter: drop-shadow(0 0 15px var(--accent));
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Floating OS Window */
+.floating-os-window {
+    background-color: rgba(10, 10, 15, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    width: 100%;
+    margin-inline: auto;
+    overflow: hidden;
+    transform: translateY(0);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.floating-os-window:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.os-titlebar {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    border-block-end: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.os-controls {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    left: 1rem;
+}
+
+.os-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.os-btn.close {
+    background-color: #ff5f56;
+}
+
+.os-btn.minimize {
+    background-color: #ffbd2e;
+}
+
+.os-btn.maximize {
+    background-color: #27c93f;
+}
+
+.os-title {
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    user-select: none;
+}
+
+.os-content {
+    padding: 2rem;
+}
+
+.about-content p {
+    font-family: monospace;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.accent-text {
+    color: var(--accent);
+    font-weight: bold;
+    margin-inline-end: 0.5rem;
+    text-shadow: 0 0 10px var(--accent);
+}
+
+/* RTL Support */
+[dir="rtl"] .about-content p {
+    text-align: right;
+}
+
+[dir="rtl"] .os-controls {
+    left: auto;
+    right: 1rem;
+}
