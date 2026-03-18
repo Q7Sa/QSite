@@ -17,8 +17,10 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          # Use printf to handle potential line ending issues and ensure a final newline
-          printf "%s\n" "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          # Use a heredoc and tr to strip any Windows carriage returns (\r)
+          cat <<'EOF' | tr -d '\r' > ~/.ssh/id_ed25519
+          ${{ secrets.SSH_PRIVATE_KEY }}
+          EOF
           chmod 600 ~/.ssh/id_ed25519
           
           # Setup SSH Config to use cloudflared as a proxy
