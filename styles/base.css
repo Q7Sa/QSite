@@ -169,8 +169,62 @@ textarea,
     color: var(--text-secondary);
     font-size: 1.5rem;
     transition: all var(--transition-normal);
-    overflow: hidden;
-    /* Prevent graphic clipping evasion */
+    overflow: visible;
+    /* Allow tooltip visibility */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(20, 20, 25, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    /* Global smooth curve integration */
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    /* Added for tooltip positioning */
+}
+
+/* Social Tooltip shared with client-tooltip aesthetic */
+.social-tooltip {
+    position: absolute;
+    bottom: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    width: 200px;
+    background: linear-gradient(135deg, rgba(15, 15, 20, 0.95) 0%, rgba(10, 10, 15, 0.98) 100%);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    padding: 0.8rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 100;
+    text-align: center;
+    font-family: var(--font-body);
+    text-transform: none;
+    letter-spacing: normal;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 10px var(--accent-transparent);
+}
+
+.social-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: var(--accent) transparent transparent transparent;
+}
+
+.social-icon:hover .social-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 /* Brand Colors for Hackery Glow Effect (Icons) */

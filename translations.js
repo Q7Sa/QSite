@@ -63,6 +63,9 @@ export const translations = {
         sugg_success_desc: 'شكراً، سيتم المراجعة قريباً.',
         sugg_close: 'إغلاق',
         wizard_title_fallback: '...',
+
+        // Socials & Tooltips
+        social_kick_tt: 'بثوث حصرية وتفاعل مباشر.',
     },
 
     ltr: {
@@ -126,5 +129,8 @@ export const translations = {
         sugg_success_desc: 'Your request will be reviewed soon.',
         sugg_close: 'Close',
         wizard_title_fallback: '...',
+
+        // Socials & Tooltips
+        social_kick_tt: 'Exclusive streams and community interaction.',
     }
 };
