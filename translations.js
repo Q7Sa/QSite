@@ -66,6 +66,11 @@ export const translations = {
 
         // Socials & Tooltips
         social_kick_tt: 'بثوث حصرية وتفاعل مباشر.',
+        social_twitch_tt: 'بثوث حصرية وتفاعل مباشر.',
+        social_discord_tt: 'انضم إلى سيرفر الدعم والمجتمع الخاص بنا.',
+        social_x_tt: 'تابع آخر التحديثات والأخبار على X.',
+        social_youtube_tt: 'اشترك لمشاهدة شروحات المينيكرافت والداتاباك.',
+        social_instagram_tt: 'خلف الكواليس وتحديثات يومية.',
     },
 
     ltr: {
@@ -132,5 +137,10 @@ export const translations = {
 
         // Socials & Tooltips
         social_kick_tt: 'Exclusive streams and community interaction.',
+        social_twitch_tt: 'Exclusive streams and community interaction.',
+        social_discord_tt: 'Join our official support server and community.',
+        social_x_tt: 'Follow for the latest updates and news on X.',
+        social_youtube_tt: 'Subscribe for Minecraft tutorials and datapack showcases.',
+        social_instagram_tt: 'Behind the scenes and daily updates.',
     }
 };
