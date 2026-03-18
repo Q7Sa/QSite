@@ -17,7 +17,8 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          # Use printf to handle potential line ending issues and ensure a final newline
+          printf "%s\n" "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           
           # Setup SSH Config to use cloudflared as a proxy
@@ -31,4 +32,4 @@ jobs:
 
       - name: Run Deployment Script
         run: |
-          ssh ${{ secrets.SERVER_IP }} "bash /var/www/qsite/deploy.sh"
+          ssh -v ${{ secrets.SERVER_IP }} "bash /var/www/qsite/deploy.sh"
