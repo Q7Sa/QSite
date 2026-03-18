@@ -17,10 +17,8 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          # Use a heredoc and tr to strip any Windows carriage returns (\r)
-          cat <<'EOF' | tr -d '\r' > ~/.ssh/id_ed25519
-          ${{ secrets.SSH_PRIVATE_KEY }}
-          EOF
+          # Decode the key from base64 to ensure no formatting corruption
+          echo "${{ secrets.SSH_PRIVATE_KEY_B64 }}" | base64 -d > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           
           # Setup SSH Config to use cloudflared as a proxy
