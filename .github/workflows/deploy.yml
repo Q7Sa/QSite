@@ -1,5 +1,5 @@
 name: Deploy to Proxmox
-# test
+
 on:
   push:
     branches:
@@ -9,14 +9,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: SSH and Deploy
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-            echo "Starting Remote Deployment..."
-            /var/www/qsite/deploy.sh
-            echo "Remote Deployment Finished!"
+      - name: Install cloudflared
+        run: |
+          curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+          sudo dpkg -i cloudflared.deb
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          
+          # Setup SSH Config to use cloudflared as a proxy
+          cat >> ~/.ssh/config <<EOF
+          Host ${{ secrets.SERVER_IP }}
+            ProxyCommand cloudflared access ssh --hostname %h
+            User ${{ secrets.SERVER_USER }}
+            IdentityFile ~/.ssh/id_ed25519
+            StrictHostKeyChecking no
+          EOF
+
+      - name: Run Deployment Script
+        run: |
+          ssh ${{ secrets.SERVER_IP }} "bash /var/www/qsite/deploy.sh"
