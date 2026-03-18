@@ -27,6 +27,11 @@
   /* Snappy Transitions */
   --transition-fast: 0.15s ease-in-out;
   --transition-normal: 0.3s ease-in-out;
+
+  /* Global Rounding System */
+  --radius-main: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
 }
 
 [dir="rtl"] {

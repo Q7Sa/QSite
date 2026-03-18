@@ -7,49 +7,31 @@ import './styles/clients.css'
 import './styles/media.css'
 import './styles/suggestion-box.css'
 import { initInteractiveBackground } from './bg.js'
+import { initLowPolyBackground } from './bg-poly.js'
 import { formConfigs } from './forms.config.js'
+import { translations } from './translations.js'
 
 // RTL/LTR Toggle Logic
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize the canvas background
   initInteractiveBackground();
+  initLowPolyBackground();
+
+  // Background Hot-Swap Engine
+  const bgToggleFab = document.getElementById('bg-toggle-fab');
+  const bgCanvas = document.getElementById('bg-canvas');
+  const bgPolyCanvas = document.getElementById('bg-poly-canvas');
+
+  if (bgToggleFab) {
+    bgToggleFab.addEventListener('click', () => {
+      bgCanvas.classList.toggle('active-bg');
+      bgCanvas.classList.toggle('hidden-bg');
+      bgPolyCanvas.classList.toggle('active-bg');
+      bgPolyCanvas.classList.toggle('hidden-bg');
+    });
+  }
 
   const toggleBtn = document.getElementById('lang-toggle');
-
-  const translations = {
-    rtl: {
-      sugg_open: 'تقديم اقتراح',
-      sugg_header: 'اقتراحات لسيرفر الدعم',
-      sugg_step1: '1. ما اسمك؟',
-      sugg_step1_ph: 'ادخل اسمك هنا...',
-      sugg_step2: '2. ما هو عنوان الاقتراح؟',
-      sugg_step2_ph: 'عنوان مختصر...',
-      sugg_step3: '3. تفاصيل الاقتراح',
-      sugg_step3_ph: 'اشرح فكرتك بالتفصيل...',
-      sugg_next: 'التالي',
-      sugg_prev: 'السابق',
-      sugg_submit: 'إرسال',
-      sugg_success: 'تم الإرسال بنجاح!',
-      sugg_success_desc: 'شكراً لاقتراحك، سيتم مراجعته قريباً.',
-      sugg_close: 'إغلاق',
-    },
-    ltr: {
-      sugg_open: 'Submit Suggestion',
-      sugg_header: 'Support Server Suggestions',
-      sugg_step1: '1. What is your name?',
-      sugg_step1_ph: 'Enter your name here...',
-      sugg_step2: '2. Suggestion Title?',
-      sugg_step2_ph: 'Brief title...',
-      sugg_step3: '3. Suggestion Details',
-      sugg_step3_ph: 'Explain your idea in detail...',
-      sugg_next: 'Next',
-      sugg_prev: 'Back',
-      sugg_submit: 'Submit',
-      sugg_success: 'Successfully Sent!',
-      sugg_success_desc: 'Thank you for your suggestion, we will review it soon.',
-      sugg_close: 'Close',
-    }
-  };
 
   function applyLanguage(dir) {
     const dict = translations[dir];
@@ -67,15 +49,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (toggleBtn) {
-    // Initial apply for default RTL
-    applyLanguage('rtl');
+    // 1. Check for saved language, default to RTL (Arabic) if none exists
+    const savedLang = localStorage.getItem('q7-lang') || 'rtl';
 
+    // 2. Apply it immediately to the document root
+    document.documentElement.setAttribute('dir', savedLang);
+
+    // 3. Set the button's initial text correctly
+    toggleBtn.textContent = savedLang === 'rtl' ? 'EN / LTR' : 'AR / RTL';
+
+    // 4. Hydrate all strings
+    applyLanguage(savedLang);
+
+    // 5. Handle user clicks
     toggleBtn.addEventListener('click', () => {
       const currentDir = document.documentElement.getAttribute('dir');
       const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+
+      // Update DOM
       document.documentElement.setAttribute('dir', newDir);
 
-      // Update toggle text/icon based on direction
+      // Save globally
+      localStorage.setItem('q7-lang', newDir);
+
+      // Update toggle text
       toggleBtn.textContent = newDir === 'rtl' ? 'EN / LTR' : 'AR / RTL';
 
       // Apply translated texts
@@ -321,6 +318,69 @@ document.addEventListener('DOMContentLoaded', () => {
       if (suggestionModal) suggestionModal.classList.add('active');
     });
   });
+
+  // ==========================================
+  // Dynamic Collabs Engine
+  // ==========================================
+  const collabsFiles = import.meta.glob('/public/collabs/*.{png,jpg,jpeg,svg,webp}', { eager: true, as: 'url' });
+  const clientMarquee = document.querySelector('.client-marquee');
+
+  if (clientMarquee && Object.keys(collabsFiles).length > 0) {
+    clientMarquee.innerHTML = ''; // Start pristine
+
+    // Create the animation track
+    const track = document.createElement('div');
+    track.className = 'marquee-track';
+
+    // Create the first content wrapper
+    const content = document.createElement('div');
+    content.style.display = 'flex';
+    content.style.gap = '2rem';
+
+    for (const path in collabsFiles) {
+      const imgUrl = collabsFiles[path];
+
+      const filenameMatch = path.match(/\/([^\/]+)\.[a-z0-9]+$/i);
+      if (!filenameMatch) continue;
+
+      const rawName = filenameMatch[1];
+      const i18nKey = `${rawName}_tt`;
+
+      const box = document.createElement('div');
+      box.className = 'client-logo-box';
+
+      const img = document.createElement('img');
+      img.src = imgUrl;
+      img.alt = `${rawName} Collaboration`;
+
+      const tooltip = document.createElement('div');
+      tooltip.className = 'client-tooltip';
+      tooltip.setAttribute('data-i18n', i18nKey);
+
+      const currentDir = document.documentElement.getAttribute('dir') || 'rtl';
+      const dict = translations[currentDir];
+      tooltip.textContent = (dict && dict[i18nKey]) ? dict[i18nKey] : `Translation needed in translations.js for key: ${i18nKey}`;
+
+      box.appendChild(img);
+      box.appendChild(tooltip);
+      content.appendChild(box);
+    }
+
+    // Append the primary set
+    track.appendChild(content);
+
+    // Duplicate the entire content wrapper to mathematically preserve the exact flex gap
+    // This allows the -50% CSS transform to seamlessly hook the two blocks together visually
+    const clone = content.cloneNode(true);
+    // Add aria-hidden to the clone so screen readers don't read the logos twice
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+
+    // Inject the fully built track
+    clientMarquee.appendChild(track);
+  }
+
+
 
   // Close Modal Overrides
   const modalCloseBtns = suggestionModal ? suggestionModal.querySelectorAll('.modal-close') : [];

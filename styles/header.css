@@ -35,7 +35,16 @@
     /* Adjust based on exact logo dimensions */
     width: auto;
     display: block;
+    border-radius: var(--radius-md);
+    /* Add global smoothing */
     transition: transform var(--transition-normal), filter var(--transition-normal);
+}
+
+.site-logo img {
+    border-radius: var(--radius-md);
+    height: 100%;
+    width: auto;
+    display: block;
 }
 
 .site-logo:hover {

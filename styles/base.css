@@ -26,7 +26,8 @@ body {
     min-height: 100vh;
 }
 
-#bg-canvas {
+#bg-canvas,
+#bg-poly-canvas {
     position: absolute;
     top: 0;
     left: 0;
@@ -35,6 +36,17 @@ body {
     z-index: -2;
     pointer-events: none;
     /* Let clicks pass through to the content */
+    transition: opacity 0.8s ease-in-out;
+}
+
+#bg-canvas.active-bg,
+#bg-poly-canvas.active-bg {
+    opacity: 1;
+}
+
+#bg-canvas.hidden-bg,
+#bg-poly-canvas.hidden-bg {
+    opacity: 0;
 }
 
 #bg-glass-overlay {
@@ -63,6 +75,17 @@ h6 {
     letter-spacing: 0.05em;
 }
 
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    margin-bottom: 3rem;
+    position: relative;
+    text-shadow: 0 0 10px var(--accent-transparent);
+    letter-spacing: 1px;
+}
+
 a {
     color: var(--accent);
     text-decoration: none;
@@ -80,13 +103,13 @@ video {
     display: block;
 }
 
-/* Sharp Voxel/Pixel Aesthetic Defaults */
+/* Smooth Aesthetic Defaults */
 button,
 input,
 textarea,
 .card {
-    border-radius: 0px !important;
-    /* Forces sharp corners */
+    border-radius: var(--radius-sm);
+    /* Standardized global rounding */
 }
 
 .container {
@@ -141,9 +164,13 @@ textarea,
     height: 50px;
     background-color: rgba(20, 20, 25, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    /* Global smooth curve integration */
     color: var(--text-secondary);
     font-size: 1.5rem;
     transition: all var(--transition-normal);
+    overflow: hidden;
+    /* Prevent graphic clipping evasion */
 }
 
 /* Brand Colors for Hackery Glow Effect (Icons) */
@@ -190,6 +217,8 @@ textarea,
     transform: translateY(-5px);
 }
 
+
+
 .footer-copy {
     text-align: center;
     color: var(--text-secondary);
@@ -225,6 +254,7 @@ textarea,
     object-fit: contain;
     border: 2px solid var(--accent);
     box-shadow: 0 0 30px var(--accent);
+    border-radius: var(--radius-main);
     animation: zoomIn 0.3s ease-out;
 }
 
@@ -262,4 +292,39 @@ textarea,
     font-family: var(--font-heading);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+/* Experimental BG Toggle FAB */
+.bg-toggle-fab {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 1000;
+    background: rgba(10, 10, 15, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+[dir="rtl"] .bg-toggle-fab {
+    left: auto;
+    right: 2rem;
+}
+
+.bg-toggle-fab:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 15px var(--accent-transparent);
+    transform: translateY(-3px);
 }

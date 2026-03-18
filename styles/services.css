@@ -15,6 +15,7 @@
     background-color: rgba(20, 20, 25, 0.6);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-main);
     padding: 2rem;
     transition: all var(--transition-normal);
     cursor: pointer;
@@ -35,6 +36,7 @@
     transform: scaleY(0);
     transform-origin: top;
     transition: transform var(--transition-normal);
+    border-radius: var(--radius-main) 0 0 var(--radius-main);
 }
 
 .service-card:hover {
@@ -77,6 +79,7 @@
     background-color: var(--bg-primary);
     padding: 1.5rem;
     border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
 }
 
 .tier h4 {
@@ -117,6 +120,7 @@
     aspect-ratio: 16 / 9;
     background-color: var(--bg-primary);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
     transition: all var(--transition-normal);
     display: flex;
     align-items: center;
@@ -173,6 +177,7 @@
     margin-block-start: 1rem;
     transition: all var(--transition-normal);
     border: 1px solid transparent;
+    border-radius: var(--radius-sm);
 }
 
 .btn-action:hover {

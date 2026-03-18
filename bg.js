@@ -65,18 +65,28 @@ export function initInteractiveBackground() {
     });
 
     function resize() {
-        width = canvas.width = document.documentElement.scrollWidth;
-        height = canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
+        // Essential: Set the inline CSS width/height to match exactly the physical pixels, preventing stretching
+        canvas.style.width = '100%';
+        canvas.style.height = document.documentElement.scrollHeight + 'px';
+
+        // Critical: Set the logical drawing buffer exactly to the physical layout pixels to prevent internal scaling
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = document.documentElement.scrollHeight;
+
         initParticles();
     }
 
+    // React to DOM height changes (like the infinite scroll cloning)
     const docObserver = new ResizeObserver(() => {
-        // Only resize canvas if the document size significantly changes to avoid unnecessary re-init loops
-        if (Math.abs(canvas.height - document.documentElement.scrollHeight) > 50) {
+        if (Math.abs(canvas.height - document.documentElement.scrollHeight) > 5) {
             resize();
         }
     });
-    docObserver.observe(document.body);
+    // Need to observe root element for absolute scale
+    docObserver.observe(document.documentElement);
+
+    // Fallback resize listener for standard width adjustments
+    window.addEventListener('resize', resize);
 
     class Particle {
         constructor(x, y) {

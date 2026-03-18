@@ -11,7 +11,8 @@
 
 <body>
   <!-- Interactive Background Canvas -->
-  <canvas id="bg-canvas"></canvas>
+  <canvas id="bg-canvas" class="active-bg"></canvas>
+  <canvas id="bg-poly-canvas" class="hidden-bg"></canvas>
   <div id="bg-glass-overlay"></div>
 
   <!-- Header -->
@@ -25,9 +26,9 @@
       <!-- Nav links Centered -->
       <nav class="site-nav">
         <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#media">Media</a></li>
+          <li><a href="#about" data-i18n="nav_about">About</a></li>
+          <li><a href="#services" data-i18n="nav_services">Services</a></li>
+          <li><a href="#media" data-i18n="nav_media">Media</a></li>
         </ul>
       </nav>
 
@@ -65,11 +66,11 @@
               <span class="os-btn minimize"></span>
               <span class="os-btn maximize"></span>
             </div>
-            <div class="os-title">about_me.exe</div>
+            <div class="os-title" data-i18n="about_exe">about_me.exe</div>
           </div>
           <div class="os-content about-content">
-            <p><span class="accent-text">&gt; q7_system:</span> high-performance setups // custom datapacks // server
-              optimization.</p>
+            <p><span class="accent-text" data-i18n="about_hero">&gt; q7_system: high-performance setups // custom
+                datapacks // server optimization.</span></p>
           </div>
         </div>
       </div>
@@ -78,25 +79,26 @@
     <!-- Section 2: Services -->
     <section id="services" class="section-services">
       <div class="container">
+        <h2 class="section-title" data-i18n="sec_services">Services</h2>
         <div class="services-grid">
           <!-- Card 1 -->
           <div class="service-card" data-service="optimization">
-            <h3>Server Optimization</h3>
-            <p class="service-brief">Max performance, zero lag.</p>
+            <h3 data-i18n="serv_opt_title">Server Optimization</h3>
+            <p class="service-brief" data-i18n="serv_opt_brief">Max performance, zero lag.</p>
             <div class="service-details">
               <div class="tier">
-                <h4>Basic</h4>
-                <p>Core config tweaks & plugin cleanup.</p>
+                <h4 data-i18n="tier_basic">Basic</h4>
+                <p data-i18n="tier_basic_desc">Core config tweaks & plugin cleanup.</p>
                 <span class="price">$XX</span>
               </div>
               <div class="tier">
-                <h4>Pro</h4>
-                <p>Advanced profiling & JVM tuning.</p>
+                <h4 data-i18n="tier_pro">Pro</h4>
+                <p data-i18n="tier_pro_desc">Advanced profiling & JVM tuning.</p>
                 <span class="price">$XX</span>
               </div>
 
               <div class="service-gallery">
-                <h5>Previous Work</h5>
+                <h5 data-i18n="prev_work">Previous Work</h5>
                 <div class="gallery-grid">
                   <div class="gallery-item placeholder-img"><span>Work 1</span></div>
                   <div class="gallery-item placeholder-img"><span>Work 2</span></div>
@@ -104,23 +106,24 @@
                 </div>
               </div>
 
-              <button class="btn-action btn-open-form" data-form="service_optimization">Request Service</button>
+              <button class="btn-action btn-open-form" data-form="service_optimization" data-i18n="req_service">Request
+                Service</button>
             </div>
           </div>
 
           <!-- Card 2 -->
           <div class="service-card" data-service="datapacks">
-            <h3>Datapack Coding</h3>
-            <p class="service-brief">Custom logic & mechanics.</p>
+            <h3 data-i18n="serv_data_title">Datapack Coding</h3>
+            <p class="service-brief" data-i18n="serv_data_brief">Custom logic & mechanics.</p>
             <div class="service-details">
               <div class="tier">
-                <h4>Custom</h4>
-                <p>Tailored functionality based on requirements.</p>
-                <span class="price">Varies</span>
+                <h4 data-i18n="tier_custom">Custom</h4>
+                <p data-i18n="tier_custom_desc">Tailored functionality based on requirements.</p>
+                <span class="price" data-i18n="varies">Varies</span>
               </div>
 
               <div class="service-gallery">
-                <h5>Previous Work</h5>
+                <h5 data-i18n="prev_work">Previous Work</h5>
                 <div class="gallery-grid">
                   <div class="gallery-item placeholder-img"><span>Pack 1</span></div>
                   <div class="gallery-item placeholder-img"><span>Pack 2</span></div>
@@ -128,28 +131,29 @@
                 </div>
               </div>
 
-              <button class="btn-action btn-open-form" data-form="service_datapacks">Request Service</button>
+              <button class="btn-action btn-open-form" data-form="service_datapacks" data-i18n="req_service">Request
+                Service</button>
             </div>
           </div>
 
           <!-- Card 3 -->
           <div class="service-card" data-service="smp">
-            <h3>SMP Servers Set Up</h3>
-            <p class="service-brief">Ready-to-play survival experiences.</p>
+            <h3 data-i18n="serv_smp_title">SMP Servers Set Up</h3>
+            <p class="service-brief" data-i18n="serv_smp_brief">Ready-to-play survival experiences.</p>
             <div class="service-details">
               <div class="tier">
-                <h4>Standard</h4>
-                <p>Essential plugins + secure setup.</p>
+                <h4 data-i18n="tier_std">Standard</h4>
+                <p data-i18n="tier_std_desc">Essential plugins + secure setup.</p>
                 <span class="price">$XX</span>
               </div>
               <div class="tier">
-                <h4>Premium</h4>
-                <p>Custom terrain, economy & ranks.</p>
+                <h4 data-i18n="tier_prem">Premium</h4>
+                <p data-i18n="tier_prem_desc">Custom terrain, economy & ranks.</p>
                 <span class="price">$XX</span>
               </div>
 
               <div class="service-gallery">
-                <h5>Previous Work</h5>
+                <h5 data-i18n="prev_work">Previous Work</h5>
                 <div class="gallery-grid">
                   <div class="gallery-item placeholder-img"><span>SMP 1</span></div>
                   <div class="gallery-item placeholder-img"><span>SMP 2</span></div>
@@ -157,7 +161,8 @@
                 </div>
               </div>
 
-              <button class="btn-action btn-open-form" data-form="service_smp">Request Service</button>
+              <button class="btn-action btn-open-form" data-form="service_smp" data-i18n="req_service">Request
+                Service</button>
             </div>
           </div>
         </div>
@@ -167,25 +172,9 @@
     <!-- Section 3: Who I've Worked With -->
     <section id="clients" class="section-clients">
       <div class="container">
+        <h2 class="section-title" data-i18n="sec_clients">Who I've Worked With</h2>
+        <!-- Javascript dynamically injects .client-logo-box here from /public/collabs/ -->
         <div class="client-marquee">
-          <div class="client-logo-box"></div>
-          <div class="client-logo-box"></div>
-          <div class="client-logo-box"></div>
-          <div class="client-logo-box"></div>
-          <div class="client-logo-box"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: Media / Instagram Reels -->
-    <section id="media" class="section-media">
-      <div class="container">
-        <div class="media-grid">
-          <!-- 9:16 aspect ratio containers -->
-          <div class="media-item"></div>
-          <div class="media-item"></div>
-          <div class="media-item"></div>
-          <div class="media-item"></div>
         </div>
       </div>
     </section>
@@ -237,7 +226,7 @@
       </div>
     </div>
     <div class="footer-copy">
-      <p>&copy; 2026 Q7. All boundaries broken.</p>
+      <p data-i18n="footer_copy">&copy; 2026 Q7. All boundaries broken.</p>
     </div>
   </footer>
 
@@ -247,6 +236,11 @@
     <img class="lightbox-content" id="lightbox-img" alt="Maximized view">
     <div id="lightbox-caption"></div>
   </div>
+
+  <!-- Experimental Features Toggle -->
+  <button id="bg-toggle-fab" class="bg-toggle-fab" aria-label="Toggle Experimental Background">
+    <i class="fa-solid fa-shapes"></i> <span data-i18n="bg_toggle">Exp BG</span>
+  </button>
 
   <script type="module" src="/main.js"></script>
 </body>
