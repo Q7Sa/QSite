@@ -14,11 +14,20 @@ export const translations = {
 
         // Client Tooltips
         sec_clients: 'شركاء النجاح',
-        client1_tt: 'نص تجريبي للعميل الأول. قمنا ببناء نظام متكامل هنا.',
-        client2_tt: 'وصف مختصر لشراكة رائعة مع هذا العميل.',
-        client3_tt: 'مشروع ناجح جداً ركز على تجربة البقاء المخصصة.',
-        client4_tt: 'تعاوننا في برمجة داتاباك معقدة للبطولات.',
-        client5_tt: 'شراكة قوية لضمان أفضل أداء للسيرفر.',
+        'D3MCRAFT-S3_tt': 'نص تجريبي لـ D3MCRAFT-S3.',
+        'D3MCRAFT-S4_tt': 'نص تجريبي لـ D3MCRAFT-S4.',
+        'FanoosCraft_tt': 'نص تجريبي لـ FanoosCraft.',
+        'd3m-team_tt': 'نص تجريبي لـ d3m-team.',
+        'd7oomy999_tt': 'نص تجريبي لـ d7oomy999.',
+        'da7oom_tt': 'نص تجريبي لـ da7oom.',
+        'm55_tt': 'نص تجريبي لـ m55.',
+        'raheeb_tt': 'نص تجريبي لـ raheeb.',
+        's3eedxx_tt': 'نص تجريبي لـ s3eedxx.',
+        's3exp_tt': 'نص تجريبي لـ s3exp.',
+        's4leeh_tt': 'نص تجريبي لـ s4leeh.',
+        'spf57_tt': 'نص تجريبي لـ spf57.',
+        'waleed_tt': 'نص تجريبي لـ waleed.',
+        'wildmc_tt': 'نص تجريبي لـ wildmc.',
 
         // Services Section
         sec_services: 'الخدمات',
@@ -71,6 +80,8 @@ export const translations = {
         social_x_tt: 'تابع آخر التحديثات والأخبار على X.',
         social_youtube_tt: 'اشترك لمشاهدة شروحات المينيكرافت والداتاباك.',
         social_instagram_tt: 'خلف الكواليس وتحديثات يومية.',
+
+        //
     },
 
     ltr: {
@@ -85,11 +96,20 @@ export const translations = {
 
         // Client Tooltips
         sec_clients: 'Who I\'ve Worked With',
-        client1_tt: 'Lorem ipsum dolor sit amet, this is a placeholder description for client 1.',
-        client2_tt: 'An amazing collaboration we did involving massive custom infrastructure.',
-        client3_tt: 'A short paragraph detailing the success of this SMP project.',
-        client4_tt: 'We programmed complex datapack features to enable tournament logic.',
-        client5_tt: 'An incredible partnership to secure maximum server performance.',
+        'D3MCRAFT-S3_tt': 'Placeholder description for D3MCRAFT-S3.',
+        'D3MCRAFT-S4_tt': 'Placeholder description for D3MCRAFT-S4.',
+        'FanoosCraft_tt': 'Placeholder description for FanoosCraft.',
+        'd3m-team_tt': 'Placeholder description for d3m-team.',
+        'd7oomy999_tt': 'Placeholder description for d7oomy999.',
+        'da7oom_tt': 'Placeholder description for da7oom.',
+        'm55_tt': 'Placeholder description for m55.',
+        'raheeb_tt': 'Placeholder description for raheeb.',
+        's3eedxx_tt': 'Placeholder description for s3eedxx.',
+        's3exp_tt': 'Placeholder description for s3exp.',
+        's4leeh_tt': 'Placeholder description for s4leeh.',
+        'spf57_tt': 'Placeholder description for spf57.',
+        'waleed_tt': 'Placeholder description for waleed.',
+        'wildmc_tt': 'Placeholder description for wildmc.',
 
         // Services Section
         sec_services: 'Services',
