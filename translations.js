@@ -7,7 +7,6 @@ export const translations = {
         nav_about: 'عني',
         nav_services: 'الخدمات',
         nav_media: 'أعمالي',
-        nav_slideshow: 'معرض الصور',
 
         // About Section
         about_exe: 'about_me.exe',
@@ -90,7 +89,6 @@ export const translations = {
         nav_about: 'About',
         nav_services: 'Services',
         nav_media: 'Media',
-        nav_slideshow: 'Slideshow',
 
         // About Section
         about_exe: 'about_me.exe',
