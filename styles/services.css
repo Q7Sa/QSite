@@ -143,11 +143,39 @@
             rgba(255, 255, 255, 0.05) 20px);
 }
 
+.gallery-item.placeholder-img .placeholder-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem;
+    text-align: center;
+}
+
 .gallery-item.placeholder-img span {
     font-family: monospace;
     color: var(--text-secondary);
     font-size: 0.8rem;
     text-transform: uppercase;
+}
+
+.project-client {
+    font-size: 0.65rem;
+    color: var(--accent);
+    font-family: monospace;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.gallery-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    padding: 1rem;
+    font-style: italic;
+    opacity: 0.6;
 }
 
 .gallery-item:hover {

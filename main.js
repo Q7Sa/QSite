@@ -10,6 +10,89 @@ import { initInteractiveBackground } from './bg.js'
 import { initLowPolyBackground } from './bg-poly.js'
 import { formConfigs } from './forms.config.js'
 import { translations } from './translations.js'
+import { projects } from './projects.config.js'
+
+function renderGalleries(dir) {
+  for (const [serviceKey, items] of Object.entries(projects)) {
+    const card = document.querySelector(`.service-card[data-service="${serviceKey}"]`);
+    if (!card) continue;
+    const grid = card.querySelector('.gallery-grid');
+    if (!grid) continue;
+
+    grid.innerHTML = '';
+
+    if (items.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'gallery-empty';
+      empty.textContent = dir === 'rtl' ? 'قريباً...' : 'Coming soon...';
+      grid.appendChild(empty);
+      continue;
+    }
+
+    items.forEach(project => {
+      const label = project.title[dir] || project.title.ltr;
+      const desc  = project.desc[dir]  || project.desc.ltr;
+
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.dataset.title = label;
+      item.dataset.desc  = desc;
+
+      if (project.image) {
+        const img = document.createElement('img');
+        img.src = project.image;
+        img.alt = label;
+        item.appendChild(img);
+      } else {
+        item.classList.add('placeholder-img');
+        const inner = document.createElement('div');
+        inner.className = 'placeholder-inner';
+        const span = document.createElement('span');
+        span.textContent = label;
+        inner.appendChild(span);
+        if (project.client) {
+          const badge = document.createElement('small');
+          badge.className = 'project-client';
+          badge.textContent = project.client;
+          inner.appendChild(badge);
+        }
+        item.appendChild(inner);
+      }
+
+      grid.appendChild(item);
+    });
+  }
+}
+
+function bindGalleryLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  if (!lightbox) return;
+
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      const imgTag = item.querySelector('img');
+
+      if (imgTag) {
+        lightboxImg.src = imgTag.src;
+        lightboxImg.style.background = 'none';
+        lightboxImg.style.width = 'auto';
+        lightboxImg.style.height = 'auto';
+      } else {
+        lightboxImg.style.background = 'repeating-linear-gradient(45deg, rgba(200,200,200,0.1), rgba(200,200,200,0.1) 20px, rgba(100,100,100,0.1) 20px, rgba(100,100,100,0.1) 40px)';
+        lightboxImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        lightboxImg.style.width = '800px';
+        lightboxImg.style.height = '450px';
+      }
+
+      lightboxCaption.innerText = item.dataset.title || '';
+      lightbox.classList.add('active');
+    });
+  });
+}
 
 // RTL/LTR Toggle Logic
 document.addEventListener('DOMContentLoaded', () => {
@@ -77,8 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Apply translated texts
       applyLanguage(newDir);
+      renderGalleries(newDir);
+      bindGalleryLightbox();
     });
   }
+
+  renderGalleries(document.documentElement.getAttribute('dir') || 'rtl');
 
   // Theme Selector Logic
   const themeBtns = document.querySelectorAll('.theme-btn');
@@ -137,6 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('click', (e) => {
       // Don't toggle if clicking on an action button inside the card
       if (e.target.closest('.btn-action')) return;
+      if (e.target.closest('.gallery-item')) return;
 
       // Close other cards to maintain a clean layout (optional based on preference)
       serviceCards.forEach(c => {
@@ -404,49 +492,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Lightbox Logic
+  bindGalleryLightbox();
+
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxCaption = document.getElementById('lightbox-caption');
   const closeBtn = document.querySelector('.lightbox-close');
-
-  const galleryItems = document.querySelectorAll('.gallery-item');
-
-  galleryItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevents the servicecard from collapsing
-
-      // Since they are placeholders right now, we grab the span text
-      // If they were real images, we would grab the img src.
-      let imgSrc = '';
-      let textCaption = '';
-
-      const imgTag = item.querySelector('img');
-      const spanTag = item.querySelector('span');
-
-      if (imgTag) {
-        imgSrc = imgTag.src;
-        textCaption = imgTag.alt || 'Gallery Image';
-      } else if (spanTag) {
-        // Fallback for current placeholder look
-        textCaption = spanTag.innerText;
-        // Mock a placeholder image for the lightbox
-        lightboxImg.style.background = 'repeating-linear-gradient(45deg, rgba(200,200,200,0.1), rgba(200,200,200,0.1) 20px, rgba(100,100,100,0.1) 20px, rgba(100,100,100,0.1) 40px)';
-        lightboxImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // transparent pixel
-        lightboxImg.style.width = '800px';
-        lightboxImg.style.height = '450px';
-      }
-
-      if (imgSrc) {
-        lightboxImg.src = imgSrc;
-        lightboxImg.style.background = 'none';
-        lightboxImg.style.width = 'auto';
-        lightboxImg.style.height = 'auto';
-      }
-
-      lightboxCaption.innerText = textCaption;
-      lightbox.classList.add('active');
-    });
-  });
 
   // Close lightbox
   if (closeBtn && lightbox) {
